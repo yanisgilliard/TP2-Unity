@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
     public float JumpForce;
+    float score;
 
     [SerializeField]
     bool isGrounded = false;
+    bool isAlive = true;
 
     Rigidbody2D RB;
+
+    public Text ScoreTxt;
 
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
+        score = 0;
     }
 
     void Update()
@@ -26,6 +32,12 @@ public class PlayerScript : MonoBehaviour
                 isGrounded = false;
             }
         }
+
+        if(isAlive)
+        {
+            score += Time.deltaTime * 4;
+            ScoreTxt.text = "Score : " + score.ToString("F");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,6 +48,12 @@ public class PlayerScript : MonoBehaviour
             {
                 isGrounded = true;
             }
+        }
+
+        if (collision.gameObject.CompareTag("spike"))
+        {
+            isAlive = false;
+            Time.timeScale = 0;
         }
     }
 }
