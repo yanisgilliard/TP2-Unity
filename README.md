@@ -29,5 +29,5 @@ Follow these instructions to set up the game in your local environment.
 ### Installation
 1. Clone the repository or download the source code.
 2. Open the project in Unity.
-3. Load the GameOver scene and SampleScene
+3. Load the Menu scene and Game Scene
 4. Hit the 'Play' button to test the game OR File -> Build and Run
